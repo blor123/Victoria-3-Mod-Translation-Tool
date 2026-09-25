@@ -17,9 +17,9 @@ V3MM provides a file-based workflow for AI/ChatGPT-assisted translation. It pack
 Prepare Victoria 3 localization files for translation.
 
 - Select individual YML files, multiple YML files, or folders containing localization files
-- Preserve the Victoria 3 `localization/korean` directory structure
-- Convert `_english.yml` filenames to `_korean.yml` when required
-- Change the copied package's `l_english:` declaration to `l_korean:` while preserving the original source files
+- Preserve the Victoria 3 localization directory structure for the selected target language
+- Detect the source language and convert filename suffixes and localization headers independently
+- Block conflicting output targets while preserving the original source files
 - Preview the target YML files and remove duplicate selections
 - Create a translation-ready ZIP package
 - View, edit, reset, and copy the provided translation instructions
@@ -36,9 +36,17 @@ Import and apply translated files.
 - Back up existing files before replacement
 - Choose whether to back up and overwrite, overwrite, skip, or cancel when files already exist
 
+### Validation and Project Management
+
+- Validate returned ZIP packages against the original manifest
+- Detect missing files, localization keys, and protected-token changes before installation
+- Create, edit, and delete translation projects with reusable paths
+- Manage recent activity and notifications from a shared activity store
+- Check GitHub Releases for updates with optional startup checks and a 24-hour cache
+
 ### Multilingual Interface
 
-V3MM supports these interface languages:
+V3MM supports these interface and translation-target languages:
 
 - 한국어
 - English
@@ -79,25 +87,23 @@ The packaged executable includes the required runtime. You do not need to instal
 
 ## Roadmap
 
-### Current release: v1.2.0
+### Current release: v1.4.0
 
-- Streamlined translation-package and apply-translation pages
-- Drag-and-drop file and folder selection
-- Localization language declaration handling
-- Translation prompt management
-- Multilingual interface
-- Translation target preview and package summary
-- Existing safety checks, duplicate detection, and backup options
+- Translation targets linked to the selected UI language
+- Independent filename and localization-header conversion with source-language detection
+- Manifest-based validation of returned files, localization keys, and protected tokens
+- Translation project creation, editing, deletion, and path autofill
+- Unified recent-activity and notification management
+- GitHub Releases update checks with optional startup checks and a 24-hour cache
+- Existing ZIP safety checks, duplicate detection, and backup options
 
 ### Future plans
 
 The following items are planned and are not currently available:
 
-- Translation validation
-- Translation project management
 - Mod conflict analysis
 - Load-order analysis and recommendations
-- Update system
+- Automatic update installation
 
 The roadmap may change as development progresses.
 
