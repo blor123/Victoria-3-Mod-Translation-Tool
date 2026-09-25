@@ -121,4 +121,4 @@ The roadmap may change as development progresses.
 **Created by KakaoL**
 
 Steam Profile:  
-https://steamcommunity.com/id/KakaoL/
+https://steamcommunity.com/id/KakaoLV3MM/
