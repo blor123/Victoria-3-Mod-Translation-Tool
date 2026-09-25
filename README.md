@@ -44,7 +44,10 @@ V3MM supports the following interface languages:
 - 繁體中文
 - 日本語
 
+<img width="879" height="566" alt="1" src="https://github.com/user-attachments/assets/f30cfdd2-c88c-467d-8b99-702e565ffe8e" />
+
 ---
+
 
 ## Translation Workflow
 
