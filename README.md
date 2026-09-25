@@ -1,4 +1,4 @@
-# Victoria 3 Mod Translation & Manager (V3MM)
+# Victoria 3 Mod Translation Tool & Manager (V3MM)
 
 Victoria 3 Mod Manager, or **V3MM**, is a Windows utility designed to make
 Victoria 3 mod localization and management easier.
