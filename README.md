@@ -122,19 +122,3 @@ The roadmap may change as development progresses.
 
 Steam Profile:  
 https://steamcommunity.com/id/KakaoL/
-
----
-
-## Disclaimer
-
-Victoria 3 Mod Manager (V3MM) is an unofficial third-party community tool.
-
-Victoria 3 and related trademarks are property of their respective owners.
-This project is not affiliated with, sponsored by, or endorsed by
-Paradox Interactive.
-
----
-
-## License
-
-License information will be added to the repository.
