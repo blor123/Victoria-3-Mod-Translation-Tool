@@ -6,7 +6,8 @@ Victoria 3 mod localization and management easier.
 V3MM provides a simple workflow for preparing localization files for AI-assisted
 translation and applying the translated files back to your mod.
 
-(Victoria 3 Mod Translation Tool)
+Victoria 3 Mod Translation Tool
+
 ---
 
 ## Features
