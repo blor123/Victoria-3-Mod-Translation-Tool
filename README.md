@@ -76,7 +76,7 @@ V3MM is currently designed for Windows.
 
 1. Download the latest version from **Releases**.
 2. Extract the downloaded archive if necessary.
-3. Run `Victoria3ModManager.exe`.
+3. Run `V3MM.exe`.
 
 No Python installation is required for the packaged version.
 
