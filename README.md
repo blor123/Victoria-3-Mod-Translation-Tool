@@ -4,7 +4,7 @@
 
 Victoria 3 Mod Manager is a Windows desktop application for safely preparing, translating, validating, updating, and installing Victoria 3 mod localization files.
 
-![Victoria 3 Mod Manager v2.1.2](docs/images/v2.1.2-home.png)
+![Victoria 3 Mod Manager v2.1.2 latest home screen](docs/images/v2.1.2-home.png)
 
 ## Download
 
@@ -22,7 +22,7 @@ The packaged executable does not require Python. User settings and projects rema
 - Safely ignores late update-check callbacks after the application starts closing.
 - Passed 60 automated regression tests and Windows executable smoke testing.
 
-![Translation Update](docs/images/v2.1.2-translation-update.png)
+![Latest translation update screen](docs/images/v2.1.2-translation-update.png)
 
 ## Major features
 
@@ -37,6 +37,7 @@ The packaged executable does not require Python. User settings and projects rema
 ### Gemini one-click translation
 
 - Bring your own Google Gemini API key, stored in Windows Credential Manager rather than `config.json`.
+- Supports fully automated end-to-end localization translation through the Gemini API, from source package preparation to translated result generation and installation.
 - Translate localization files and update only `NEW` or `CHANGED` entries.
 - Protect Victoria 3 variables and formatting tokens during translation.
 - Use automatic batching, retry handling, cancellation, and partial-failure preservation.

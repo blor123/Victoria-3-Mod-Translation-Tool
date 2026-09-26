@@ -4,7 +4,7 @@
 
 Victoria 3 모드의 localization 파일을 선택한 언어의 AI 번역용 ZIP으로 만들고, 반환된 번역 ZIP을 안전하게 검증·설치하는 Windows GUI 프로그램입니다.
 
-![Victoria 3 Mod Manager v2.1.2 홈 화면](docs/images/v2.1.2-home.png)
+![Victoria 3 Mod Manager v2.1.2 최신 홈 화면](docs/images/v2.1.2-home.png)
 
 ## 다운로드
 
@@ -19,7 +19,7 @@ Python 설치 없이 `Victoria3ModManager.exe`를 실행할 수 있습니다. �
 - v2.1.1 Gemini Authorization Key/Interactions API 호환 수정 포함
 - 앱 종료 후 늦게 도착한 업데이트 확인 콜백을 안전하게 무시
 
-![번역 업데이트 화면](docs/images/v2.1.2-translation-update.png)
+![최신 번역 업데이트 화면](docs/images/v2.1.2-translation-update.png)
 
 ## v2.1.1 기능
 
@@ -32,6 +32,7 @@ Python 설치 없이 `Victoria3ModManager.exe`를 실행할 수 있습니다. �
 ### Gemini API(BYOK)
 
 - Google Gemini API Key를 사용한 원클릭 Localization 번역
+- Gemini API를 통해 원본 패키지 준비부터 번역 결과 생성·적용까지 처리하는 완전 자동 번역 기능 지원
 - Snapshot의 `NEW`/`CHANGED`만 전송하는 원클릭 번역 업데이트
 - Provider 인터페이스와 번역/충돌 AI Service 분리
 - API Key를 `config.json`이 아닌 Windows Credential Manager에 저장
