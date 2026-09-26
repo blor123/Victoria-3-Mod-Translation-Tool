@@ -1,114 +1,94 @@
-[English](README.md) | [한국어](README_KO.md)
+**English** | [한국어](README_KO.md)
 
-# Victoria 3 Mod Translation Tool & Manager (V3MM)
+# Victoria 3 Mod Manager (V3MM)
 
-**Victoria 3 Mod Translation Tool & Manager (V3MM)** is a Windows application for preparing, translating, and managing Victoria 3 mod localization files.
+Victoria 3 Mod Manager is a Windows desktop application for safely preparing, translating, validating, updating, and installing Victoria 3 mod localization files.
 
-V3MM provides a file-based workflow for AI/ChatGPT-assisted translation. It packages localization files into a ZIP archive for translation, then imports the translated ZIP and applies the files back to the mod. V3MM does not translate files by itself and does not connect directly to the OpenAI API or ChatGPT API.
+![Victoria 3 Mod Manager v2.1.2](docs/images/v2.1.2-home.png)
 
-[Download the latest release](https://github.com/blor123/Victoria-3-Mod-Translation-Tool/releases/latest)
+## Download
 
-![V3MM interface](https://github.com/user-attachments/assets/f30cfdd2-c88c-467d-8b99-702e565ffe8e)
+- [Download the current Windows executable](download/Victoria3ModManager.exe)
+- [Open GitHub Releases](https://github.com/blor123/Victoria-3-Mod-Translation-Tool/releases/latest)
 
-## Features
+The packaged executable does not require Python. User settings and projects remain in `%LOCALAPPDATA%\Victoria3ModManager` when the executable is replaced.
 
-### Translation Package
+## v2.1.2
 
-Prepare Victoria 3 localization files for translation.
+- Moved **Translation Update** directly below **Quick Translation** in the sidebar.
+- Added support for Google AI Studio `AQ.` authorization keys through the Gemini Interactions API.
+- Updated the default model to `gemini-3.8-flash` and automatically migrates the old v2.1.0 default.
+- Improved messages for authentication and Google Cloud project-permission errors.
+- Safely ignores late update-check callbacks after the application starts closing.
+- Passed 60 automated regression tests and Windows executable smoke testing.
 
-- Select individual YML files, multiple YML files, or folders containing localization files
-- Preserve the Victoria 3 localization directory structure for the selected target language
-- Detect the source language and convert filename suffixes and localization headers independently
-- Block conflicting output targets while preserving the original source files
-- Preview the target YML files and remove duplicate selections
-- Create a translation-ready ZIP package
-- View, edit, reset, and copy the provided translation instructions
+![Translation Update](docs/images/v2.1.2-translation-update.png)
 
-### Apply Translation
+## Major features
 
-Import and apply translated files.
+### Quick and manual translation workflows
 
-- Import translated ZIP packages regardless of their archive name or top-level wrapper folder
-- Locate translated localization files automatically
-- Safely extract ZIP files, with protections against unsafe paths and unsupported archives
-- Detect duplicate installation targets before applying files
-- Preview files before installation
-- Back up existing files before replacement
-- Choose whether to back up and overwrite, overwrite, skip, or cancel when files already exist
+- Select one or more YML files, localization folders, or mod folders.
+- Preserve the localization directory layout and original source files.
+- Convert filename suffixes and localization headers for five target languages.
+- Create AI-ready ZIP packages and safely install returned translations.
+- Preview inputs, edit translation instructions, detect duplicates, and back up files before replacement.
 
-### Validation and Project Management
+### Gemini one-click translation
 
-- Validate returned ZIP packages against the original manifest
-- Detect missing files, localization keys, and protected-token changes before installation
-- Create, edit, and delete translation projects with reusable paths
-- Manage recent activity and notifications from a shared activity store
-- Check GitHub Releases for updates with optional startup checks and a 24-hour cache
+- Bring your own Google Gemini API key, stored in Windows Credential Manager rather than `config.json`.
+- Translate localization files and update only `NEW` or `CHANGED` entries.
+- Protect Victoria 3 variables and formatting tokens during translation.
+- Use automatic batching, retry handling, cancellation, and partial-failure preservation.
+- Build translations in a separate preview directory without modifying source localization files.
 
-### Multilingual Interface
+### Translation updates and projects
 
-V3MM supports these interface and translation-target languages:
+- Compare localization snapshots and classify `NEW`, `CHANGED`, `DELETED`, and `UNCHANGED` entries.
+- Merge translated updates while preserving existing and deleted-source translations.
+- Create, edit, and remove reusable translation projects.
+- Validate returned ZIP packages against the package manifest, keys, and protected tokens.
 
-- 한국어
-- English
-- 简体中文
-- 繁體中文
-- 日本語
+### Conflict analysis
 
-The selected interface language is saved and restored when V3MM is reopened.
+- Read-only local analysis for identical paths, localization keys, Victoria 3 definitions, and `replace_path` overlap.
+- Evidence-oriented side-by-side details and JSON report export.
+- Optional Gemini analysis sends only selected conflict snippets and uses a local result cache.
 
-## ChatGPT Translation Workflow
+### Safety and interface
 
-V3MM is **not** connected to the OpenAI API or ChatGPT API. It does not request or store an OpenAI API key, ChatGPT login, cookie, or session token.
+- Blocks Zip Slip, symbolic links, encrypted archives, duplicate targets, and excessive extraction size.
+- Supports Korean, English, Simplified Chinese, Traditional Chinese, and Japanese UI languages.
+- Includes projects, recent activity, notification center, GitHub update checks, Dark Victorian UI, and DPI-aware layouts.
+- Does not modify Steam or Paradox Launcher configuration.
 
-The standard workflow is:
+## Development
 
-1. Select Victoria 3 localization files in V3MM.
-2. Create a translation package.
-3. Upload the generated ZIP file to ChatGPT.
-4. Translate the files using the translation instructions provided by V3MM.
-5. Download the translated ZIP file.
-6. Import the ZIP file back into V3MM.
-7. Review and apply the translated files.
+Python 3.11 or newer is recommended.
 
-You can use your existing ChatGPT environment, so no separate OpenAI API key is required.
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+python main.py
+```
 
-## Installation
+Run tests:
 
-V3MM supports **Windows 10** and **Windows 11**.
+```powershell
+python -m unittest discover -s tests -v
+```
 
-1. Open the [Releases page](https://github.com/blor123/Victoria-3-Mod-Translation-Tool/releases).
-2. Open the latest release.
-3. Download the packaged `.exe` file under **Assets**.
-4. Run the downloaded file.
+Build the Windows executable:
 
-The packaged executable includes the required runtime. You do not need to install Python.
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\build_windows.ps1
+```
 
-> Keep backups of important mod files. V3MM includes backup and safe-extraction features, but mod layouts can vary between projects.
+## Security
 
-## Roadmap
-
-### Current release: v1.4.0
-
-- Translation targets linked to the selected UI language
-- Independent filename and localization-header conversion with source-language detection
-- Manifest-based validation of returned files, localization keys, and protected tokens
-- Translation project creation, editing, deletion, and path autofill
-- Unified recent-activity and notification management
-- GitHub Releases update checks with optional startup checks and a 24-hour cache
-- Existing ZIP safety checks, duplicate detection, and backup options
-
-### Future plans
-
-The following items are planned and are not currently available:
-
-- Mod conflict analysis
-- Load-order analysis and recommendations
-- Automatic update installation
-
-The roadmap may change as development progresses.
+V3MM does not request ChatGPT login credentials, cookies, or session tokens. A user-supplied Gemini key is stored only in Windows Credential Manager. Never publish an API key in an issue, screenshot, log, or repository.
 
 ## Author
 
-**Created by KakaoL**
-
-Steam Profile: [https://steamcommunity.com/id/KakaoLV3MM/](https://steamcommunity.com/id/KakaoLV3MM/)
+Created by KakaoL — [Steam profile](https://steamcommunity.com/id/KakaoLV3MM/)

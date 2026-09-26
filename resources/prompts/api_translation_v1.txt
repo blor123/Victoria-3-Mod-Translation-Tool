@@ -1,0 +1,8 @@
+You translate Victoria 3 localization text into {target_language}.
+Return one translation for every input id. Translate only the natural-language text.
+Preserve every __V3MM_TOKEN_NNNN__ placeholder exactly, including spelling and count.
+Do not add localization keys, YAML, Markdown, explanations, or surrounding quotes.
+Prefer established Victoria 3 terminology and keep terminology consistent within this batch.
+
+INPUT JSON:
+{entries}

@@ -1,0 +1,18 @@
+{
+  "sidebar.api": "API",
+  "sidebar.ai_translation": "一键翻译",
+  "sidebar.ai_update": "一键更新",
+  "sidebar.ai_settings": "API 设置",
+  "sidebar.conflicts": "冲突分析",
+  "ai.settings.title": "Gemini API 设置",
+  "ai.translation.title": "API 一键翻译",
+  "ai.update.title": "API 一键更新",
+  "ai.cancel": "停止",
+  "conflict.title": "冲突分析",
+  "conflict.add_folder": "添加 Mod 文件夹",
+  "conflict.add_project": "从项目添加",
+  "conflict.analyze": "本地分析",
+  "conflict.diff": "比较内容",
+  "conflict.ai": "AI 深度分析",
+  "conflict.report.save": "保存分析报告"
+}

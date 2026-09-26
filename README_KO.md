@@ -1,114 +1,179 @@
-[English](README.md) | [한국어](README_KO.md)
+[English](README.md) | **한국어**
 
-# Victoria 3 Mod Translation Tool & Manager (V3MM)
+# Victoria 3 Mod Manager
 
-**Victoria 3 Mod Translation Tool & Manager (V3MM)**은 Victoria 3 모드의 localization 번역과 관리를 편리하게 하기 위한 Windows 프로그램입니다.
+Victoria 3 모드의 localization 파일을 선택한 언어의 AI 번역용 ZIP으로 만들고, 반환된 번역 ZIP을 안전하게 검증·설치하는 Windows GUI 프로그램입니다.
 
-V3MM은 AI/ChatGPT 번역을 위해 localization 파일을 ZIP 패키지로 준비하고, 번역 완료 후 ZIP을 다시 불러와 모드에 적용할 수 있는 파일 기반 작업 흐름을 제공합니다. V3MM 자체가 파일을 자동 번역하거나 OpenAI API 또는 ChatGPT API에 직접 연결되는 방식은 아닙니다.
+![Victoria 3 Mod Manager v2.1.2 홈 화면](docs/images/v2.1.2-home.png)
 
-[최신 버전 다운로드](https://github.com/blor123/Victoria-3-Mod-Translation-Tool/releases/latest)
+## 다운로드
 
-![V3MM 인터페이스](https://github.com/user-attachments/assets/f30cfdd2-c88c-467d-8b99-702e565ffe8e)
+- [현재 Windows EXE 바로 받기](download/Victoria3ModManager.exe)
+- [GitHub Releases 열기](https://github.com/blor123/Victoria-3-Mod-Translation-Tool/releases/latest)
 
-## 주요 기능
+Python 설치 없이 `Victoria3ModManager.exe`를 실행할 수 있습니다. 기존 설정과 프로젝트 정보는 `%LOCALAPPDATA%\Victoria3ModManager`에 유지됩니다.
 
-### 번역 패키지 생성 (Translation Package)
+## v2.1.2 기능
 
-Victoria 3 localization 파일을 번역용으로 준비합니다.
+- 사이드바의 `번역 업데이트`를 `간편 번역` 바로 아래에 배치
+- v2.1.1 Gemini Authorization Key/Interactions API 호환 수정 포함
+- 앱 종료 후 늦게 도착한 업데이트 확인 콜백을 안전하게 무시
 
-- 개별 YML 파일, 여러 YML 파일 또는 localization 파일이 포함된 폴더 선택
-- 선택한 번역 대상 언어에 맞춰 Victoria 3 localization 폴더 구조 유지
-- 소스 언어를 감지하고 파일명 접미사와 localization 헤더를 독립적으로 변환
-- 원본 파일을 보존하면서 충돌하는 출력 대상 차단
-- 번역 대상 YML 파일 미리보기 및 중복 선택 제거
-- 번역용 ZIP 패키지 생성
-- 제공되는 번역 지침 확인, 편집, 초기화 및 복사
+![번역 업데이트 화면](docs/images/v2.1.2-translation-update.png)
 
-### 번역 적용 (Apply Translation)
+## v2.1.1 기능
 
-번역이 완료된 파일을 불러와 적용합니다.
+- Google AI Studio의 `AQ.` Authorization Key와 호환되는 Gemini Interactions API 사용
+- 연결 테스트의 401 인증 실패와 403 프로젝트 권한 거부 안내 개선
+- 기본 권장 모델을 `gemini-3.8-flash`로 갱신하고 기존 2.x 모델 설정을 연결 시 자동 보정
 
-- 압축 파일 이름이나 최상위 래퍼 폴더 이름과 관계없이 번역 ZIP 불러오기
-- 번역된 localization 파일 자동 탐색
-- 안전하지 않은 경로와 지원하지 않는 압축 파일을 차단하는 안전한 ZIP 압축 해제
-- 적용 전에 중복 대상 감지
-- 설치 대상 파일 미리보기
-- 기존 파일 교체 전 백업 생성
-- 파일이 이미 존재할 경우 백업 후 덮어쓰기, 덮어쓰기, 건너뛰기 또는 취소 선택
+## v2.1.0 기능
 
-### 검증 및 프로젝트 관리
+### Gemini API(BYOK)
 
-- 원본 manifest를 기준으로 반환된 ZIP 패키지 검증
-- 설치 전에 누락된 파일·localization KEY·보호 토큰 변경 감지
-- 번역 프로젝트 생성, 수정, 삭제 및 경로 재사용
-- 최근 작업과 알림을 단일 작업 기록으로 관리
-- 선택적 시작 확인과 24시간 캐시를 사용하는 GitHub Releases 업데이트 확인
+- Google Gemini API Key를 사용한 원클릭 Localization 번역
+- Snapshot의 `NEW`/`CHANGED`만 전송하는 원클릭 번역 업데이트
+- Provider 인터페이스와 번역/충돌 AI Service 분리
+- API Key를 `config.json`이 아닌 Windows Credential Manager에 저장
+- 보호 토큰 치환·복원, 자동 Batch, 429 대기/재시도, 중지와 부분 실패 보존
+- API 응답을 별도 미리보기 폴더에 구성하고 원본 Localization은 수정하지 않음
 
-### 다국어 UI
+### Local Conflict Analyzer
 
-V3MM은 다음 UI 언어 및 번역 대상 언어를 지원합니다.
+- Gemini API Key 없이 작동하는 읽기 전용 충돌 분석
+- 동일 상대 경로 파일의 SHA-256 비교와 동일/상이 내용 분류
+- 언어별 Localization Key/Value 중복 분석
+- 주석, 문자열, 중첩 중괄호를 고려한 최상위 Victoria 3 Definition 분석
+- descriptor의 `replace_path`와 다른 Mod 파일 영역 중첩 경고
+- 개별 Parser 오류 격리와 Evidence 중심 결과
+- 검색·유형 필터·좌우 Diff·JSON Report 저장
+- 선택한 충돌 코드 조각만 전송하는 선택적 Gemini 심층 분석과 내용 기반 Cache
 
-- 한국어
-- English
-- 简体中文
-- 繁體中文
-- 日本語
+기존 수동 번역, ZIP 생성/적용, 안전 검사, 백업, 프로젝트, 알림, 업데이트 확인 기능은 유지됩니다. v2.1 UI에서는 계획에 따라 v1.7/v1.8의 Mod Import/Library/Loadout 메뉴를 제거했습니다. Steam 또는 Paradox Launcher 설정은 수정하지 않습니다.
 
-선택한 UI 언어는 저장되며 V3MM을 다시 실행할 때 유지됩니다.
+### v1.8.0 기반 기능
 
-## ChatGPT 번역 방식
+- 가져온 모드를 한곳에서 검색·필터·정렬하는 Mod Library
+- Steam/Local 출처, Workshop ID, Localization, 연결 프로젝트와 번역 상태 표시
+- 라이브러리에서 프로젝트 연결, 번역 패키지 생성, 번역 업데이트 화면으로 바로 이동
+- 현재 가져온 Playset 순서와 활성 상태를 V3MM 내부 Loadout으로 저장
+- Loadout 생성·전환·삭제와 `v3mm_loadout` JSON 가져오기·내보내기
+- 향후 v2.0 충돌 분석에서 재사용할 수 있는 읽기 전용 Mod 파일 인덱스
+- 외부 Launcher/Steam 설정은 변경하지 않는 안전한 내부 상태 관리
 
-V3MM은 **OpenAI API 또는 ChatGPT API에 직접 연결되지 않습니다.** OpenAI API Key, ChatGPT 로그인 정보, 쿠키 또는 세션 토큰을 요구하거나 저장하지 않습니다.
+### v1.7.0 기반 기능
 
-기본 작업 흐름은 다음과 같습니다.
+- 로컬 Steam 설치 경로와 Library VDF를 통한 Victoria 3 Workshop Mod 자동 탐색
+- Steam 인증정보/API 없이 이미 다운로드된 `workshop/content/529340` Mod 읽기
+- Paradox Launcher SQLite를 `mode=ro`와 `query_only`로 여는 읽기 전용 Mod/Playset 가져오기
+- Launcher 형식 인식 실패 시 폴더/JSON 가져오기 안내와 기존 번역 기능 격리
+- 수동 Mod 폴더 및 `.mod` descriptor 가져오기
+- `v3mm_mod_list` JSON 가져오기·내보내기
+- 최상위 배열, `mods`/`mod_list`/`items`/`entries`, Launcher registry, `enabled_mods` 등 다양한 JSON 형식 호환
+- 이름, Source, Workshop ID, 경로, Localization, 활성 상태, Load Order 공통 `ModEntry`
+- 가져온 Mod 목록의 사용자 설정 저장과 중복 통합
+- 접힘 상태는 위쪽, 펼침 상태는 아래쪽 꼭짓점을 갖는 SVG 카테고리 삼각형
 
-1. V3MM에서 Victoria 3 localization 파일을 선택합니다.
-2. 번역 패키지를 생성합니다.
-3. 생성된 ZIP을 ChatGPT에 업로드합니다.
-4. V3MM에서 제공하는 번역 지침을 이용해 번역합니다.
-5. 번역된 ZIP을 다운로드합니다.
-6. V3MM에서 ZIP을 다시 불러옵니다.
-7. 적용할 파일을 확인한 뒤 번역된 파일을 적용합니다.
+### v1.6.0 기반 기능
 
-기존 ChatGPT 환경을 이용할 수 있으므로 별도의 OpenAI API Key를 준비할 필요가 없습니다.
+- 기본 창에서 모두 보이는 재구성 사이드바와 접이식 `번역 패키지 / 번역 적용` 그룹
+- 패키지 생성, 5개 언어 AI 지침, 결과 적용을 한 화면에서 처리하는 간편 번역
+- UI/목표 언어와 독립적으로 선택·저장되는 5개 번역 지침 언어
+- 스냅샷 기반 NEW/CHANGED/DELETED/UNCHANGED 번역 업데이트
+- 스냅샷이 없는 프로젝트를 위한 보수적인 키 전용 레거시 비교
+- 기존 번역 유지·교체·추가와 삭제 원문 번역 보존을 지원하는 백업 우선 병합
+- 알림 버튼 기준 동적 크기·창 경계 보정 알림 센터
+- 향후 Steam/Paradox/JSON 읽기 전용 연동을 위한 `ModSourceProvider`/`ModEntry` 기반
 
-## 설치 방법
+- 프로젝트별 Localization Snapshot과 NEW/CHANGED/DELETED/UNCHANGED 비교
+- 새 항목과 변경 항목만 포함하는 대상 언어별 증분 번역 ZIP
+- 단계형 프로젝트 생성/수정 Wizard와 Localization 자동 감지
+- Settings 반응형 Scroll UI와 모든 경로의 초기화/전체 초기화
+- 알림 일회성 마이그레이션으로 삭제 상태 영구 보존
+- Font Glyph에 의존하지 않는 SVG 알림 및 사이드바 아이콘
 
-V3MM은 **Windows 10** 및 **Windows 11**을 지원합니다.
+- UI 언어에 연동된 번역 대상 언어(한국어, English, 日本語, 简体中文, 繁體中文)
+- 파일명·localization 헤더 독립 변환, 소스 언어 감지, 충돌 차단
+- 원본 manifest를 이용한 반환 ZIP의 파일·KEY·보호 토큰 검증
+- 프로젝트 생성·수정·삭제 및 경로 자동 채우기
+- 최근 작업과 우측 알림 센터의 단일 데이터 저장소, 개별/전체 지우기
+- GitHub Releases 업데이트 확인(선택적 시작 확인, 24시간 캐시, Release 페이지 열기)
 
-1. [Releases 페이지](https://github.com/blor123/Victoria-3-Mod-Translation-Tool/releases)를 엽니다.
-2. 최신 Release를 선택합니다.
-3. **Assets**에서 패키징된 `.exe` 파일을 다운로드합니다.
-4. 다운로드한 파일을 실행합니다.
+- 참고 디자인을 반영한 Dark Victorian 테마와 V3MM 브랜딩
+- 상단 브랜딩, 좌측 사이드바, 페이지 전환, 하단 작업 상태 표시
+- 홈 화면 기능 카드와 최근 작업 5개 표시
+- 번역 패키지 생성과 번역 적용의 독립 페이지
+- 설정, 정보, 프로젝트/도구 예정 페이지
+- 100%, 125%, 150% Windows 배율 대응 레이아웃
+- 멀티사이즈 V3MM Windows 앱 아이콘
 
-패키징된 실행 파일에는 필요한 런타임이 포함되어 있으므로 Python을 별도로 설치할 필요가 없습니다.
+v1.0에서 제공하던 다음 코어 기능은 그대로 유지합니다.
 
-> 중요한 모드 파일은 별도로 백업해 두는 것을 권장합니다. V3MM은 백업과 안전한 압축 해제 기능을 제공하지만, 모드마다 파일 구조가 다를 수 있습니다.
+- 단일/복수 YML, `english`/`localization` 폴더, 모드 폴더 선택
+- `_english.yml` → `_korean.yml` 파일명 변환
+- `localization/korean` 폴더 구조 유지
+- 원본 파일은 byte 수준으로 보존하고 ZIP 복사본의 `l_english:` 선언만 최소 변경
+- 5개 언어 UI(한국어, English, 简体中文, 繁體中文, 日本語)와 즉시 전환
+- 파일·폴더 드래그 앤 드롭 및 번역 대상 미리보기
+- `l_english:` 선언만 `l_korean:`으로 최소 변경하고 원본 보존
+- Prompt v4 확인·편집·복사·언어별 기본값 복원
+- 이름과 최상위 래퍼 폴더에 무관한 번역 ZIP 탐색
+- Zip Slip, 심볼릭 링크, 암호화 ZIP, 과도한 압축 해제 크기 차단
+- 설치 전 파일 목록/중복 확인
+- 백업 후 덮어쓰기(기본), 덮어쓰기, 건너뛰기, 취소
+- `%LOCALAPPDATA%\Victoria3ModManager`에 설정과 순환 로그 저장
+- 오래된 전용 임시 작업 폴더 정리
 
-## Roadmap
+프로그램은 ChatGPT 로그인 정보, 쿠키 또는 세션 토큰을 요구하거나 저장하지 않습니다. 사용자가 직접 입력한 Gemini API 키는 일반 설정 파일이 아닌 Windows Credential Manager에만 저장합니다.
 
-### 현재 버전: v1.4.0
+## 개발 환경 실행
 
-- 선택한 UI 언어와 연동되는 번역 대상 언어
-- 소스 언어 감지와 파일명·localization 헤더 독립 변환
-- 원본 manifest 기반 반환 파일·localization KEY·보호 토큰 검증
-- 번역 프로젝트 생성, 수정, 삭제 및 경로 자동 채우기
-- 최근 작업과 알림 센터의 통합 관리
-- 선택적 시작 확인과 24시간 캐시를 사용하는 GitHub Releases 업데이트 확인
-- 기존 ZIP 안전 검사, 중복 감지 및 백업 선택 기능 유지
+Python 3.11 이상을 권장합니다.
 
-### 향후 계획
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+python main.py
+```
 
-다음 기능은 향후 계획이며 현재 지원되는 기능이 아닙니다.
+## 테스트
 
-- 모드 충돌 분석
-- 모드 로드 순서 분석 및 추천
-- 자동 업데이트 설치
+```powershell
+python -m unittest discover -s tests -v
+```
 
-개발 진행 상황에 따라 Roadmap은 변경될 수 있습니다.
+테스트는 코어 로직뿐 아니라 새 GUI와 코어의 연결, 페이지 전환, 설정과 최근 작업 기록도 검증합니다.
 
-## 제작자
+## Windows EXE 빌드
 
-**Created by KakaoL**
+프로젝트 루트에서 다음을 실행합니다.
 
-Steam Profile: [https://steamcommunity.com/id/KakaoLV3MM/](https://steamcommunity.com/id/KakaoLV3MM/)
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\build_windows.ps1
+```
+
+스크립트는 전용 가상 환경을 만들고 테스트를 통과한 뒤 `dist\Victoria3ModManager.exe`를 생성합니다. EXE 실행에는 사용자 PC의 Python 설치가 필요하지 않습니다.
+
+빌드 설정은 다른 프로그램의 UCRT/ICU DLL이 PATH를 통해 잘못 포함되지 않도록 Windows 시스템 제공 `ucrtbase.dll`, `api-ms-win-crt-*`, `icuuc.dll`, `icudt*.dll`을 패키징 대상에서 제외합니다.
+
+## 버전
+
+- Application Version: 2.1.2
+- Translation Workflow Version: 5
+- Prompt Version: 4
+
+사용자 수정 프롬프트는 설정 파일에 별도로 저장되므로 EXE를 교체해도 유지됩니다.
+
+## EXE 업데이트 방안
+
+각 버전은 Python 소스가 아니라 단일 `Victoria3ModManager.exe`로 배포할 수 있습니다. 사용자 설정과 로그는 EXE 밖의 `%LOCALAPPDATA%\Victoria3ModManager`에 있으므로 프로그램을 종료하고 새 EXE로 교체해도 기존 설정이 유지됩니다.
+
+실행 중인 프로그램이 자기 EXE를 직접 덮어쓰는 방식은 파일 잠금과 업데이트 실패 시 복구 문제 때문에 사용하지 않습니다. 초기 업데이트 방식은 다음과 같이 단순하게 유지합니다.
+
+1. 새 버전 EXE를 내려받습니다.
+2. 실행 중인 Victoria 3 Mod Manager를 종료합니다.
+3. 기존 EXE를 새 EXE로 교체합니다.
+4. 기존 사용자 설정을 그대로 불러와 실행합니다.
+
+향후 자동 업데이트가 필요하면 별도의 updater 실행 파일이 새 버전의 해시 또는 전자서명을 검증한 후 본 프로그램이 종료된 상태에서 교체하도록 구현합니다.

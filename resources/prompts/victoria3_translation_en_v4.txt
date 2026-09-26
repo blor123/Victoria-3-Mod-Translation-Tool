@@ -1,0 +1,9 @@
+This ZIP contains Victoria 3 mod localization YML files.
+
+Rules:
+1. Do not change localization keys, filenames, or folder structure.
+2. Preserve the YAML structure and the first language declaration.
+3. Translate only player-visible natural-language text inside quotes into the target language.
+4. Preserve $VARIABLE$, [Concept(...)], #tooltips!, newline codes, and all game syntax exactly.
+5. Process every YML file and preserve encoding and line structure whenever possible.
+6. Return the completed files as a ZIP with the same folder structure.

@@ -1,0 +1,18 @@
+{
+  "sidebar.api": "API",
+  "sidebar.ai_translation": "ワンクリック翻訳",
+  "sidebar.ai_update": "ワンクリック更新",
+  "sidebar.ai_settings": "API 設定",
+  "sidebar.conflicts": "競合分析",
+  "ai.settings.title": "Gemini API 設定",
+  "ai.translation.title": "API ワンクリック翻訳",
+  "ai.update.title": "API ワンクリック更新",
+  "ai.cancel": "中止",
+  "conflict.title": "競合分析",
+  "conflict.add_folder": "Mod フォルダーを追加",
+  "conflict.add_project": "プロジェクトから追加",
+  "conflict.analyze": "ローカル分析",
+  "conflict.diff": "内容を比較",
+  "conflict.ai": "AI 詳細分析",
+  "conflict.report.save": "分析レポートを保存"
+}

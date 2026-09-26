@@ -1,0 +1,11 @@
+This ZIP contains Victoria 3 localization files.
+
+Translate every player-facing natural-language value into the target translation language stated above. Follow these rules:
+
+1. Do not rename files or change the folder structure.
+2. Do not change localization keys or the required localization header stated above.
+3. Translate only player-facing natural-language text. The source language may vary between files.
+4. Preserve `$VARIABLE$`, `[Concept('key', 'text')]`, `#tooltippable`, icon codes, formatting codes, escaped newlines, and all Victoria 3 scripting syntax exactly.
+5. Do not unnecessarily change YAML structure, indentation, quotation marks, line order, or file encoding.
+6. Process every YML file without omissions.
+7. Return the completed files as a ZIP with the original folder structure.

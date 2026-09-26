@@ -1,0 +1,12 @@
+{
+  "home.package_desc": "모드의 localization YML 파일을 현재 언어 설정에 맞는 번역 요청용 ZIP으로 준비합니다.",
+  "package.description": "localization YML을 현재 선택한 언어의 번역 요청용 ZIP으로 안전하게 준비합니다.",
+  "about.description": "Victoria 3 모드의 번역과 관리를 더 편리하게 하기 위한 도구입니다.",
+  "activity.clear_all": "모두 지우기", "activity.remove": "지우기", "activity.package_created": "번역 패키지 생성 완료", "activity.translation_applied": "번역 적용 완료", "activity.project_created": "프로젝트 생성", "activity.project_updated": "프로젝트 수정", "activity.update_available": "업데이트 알림", "activity.info": "알림",
+  "notification.title": "알림", "notification.empty": "새 알림이 없습니다.",
+  "projects.new": "새 프로젝트", "projects.empty": "등록된 프로젝트가 없습니다.", "projects.edit": "편집", "projects.delete": "삭제", "projects.delete_confirm": "프로젝트 기록을 삭제하시겠습니까? 원본 파일은 삭제되지 않습니다.", "projects.name": "프로젝트명", "projects.source": "모드 원본 경로", "projects.localization": "Localization 경로", "projects.install": "번역 설치 경로",
+  "settings.target_help": "UI 언어는 번역 대상 언어도 결정합니다. 파일명 접미사와 localization 헤더가 해당 언어에 맞게 생성됩니다.",
+  "package.select_all": "전체 선택", "package.select_none": "전체 해제",
+  "validation.title": "번역 결과 검증", "validation.no_manifest": "일치하는 원본 작업 기록이 없어 파일 수·KEY·토큰 비교를 생략합니다. ZIP 안전 검사와 설치 전 확인은 계속 수행됩니다.", "validation.summary": "예상 파일 {expected}개 / 결과 {actual}개 · 오류 {errors}개 · 경고 {warnings}개", "validation.success": "검증 문제를 찾지 못했습니다.", "validation.proceed": "확인 후 계속",
+  "update.section": "업데이트", "update.check_startup": "시작할 때 GitHub Releases에서 업데이트 확인", "update.check_now": "지금 확인", "update.current": "현재 버전: {version}", "update.checking": "업데이트 확인 중...", "update.available": "v{version} 업데이트가 있습니다!", "update.none": "최신 버전입니다.", "update.failed": "업데이트를 확인할 수 없습니다."
+}
